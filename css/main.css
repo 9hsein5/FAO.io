@@ -138,7 +138,7 @@ input {
 
 .searchandtoggle-container {
     display: flex;
-    border: 2px solid rgb(239, 239, 239);
+    border: 2px solid #f0f0f0;
     box-sizing: border-box;
 }
 
@@ -236,7 +236,7 @@ input {
 
 .filter-toggler {
     width: 50px;
-    border-left: 1px solid rgb(239, 239, 239);
+    border-left: 1px solid #f0f0f0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -260,14 +260,14 @@ input {
 .categories-list {
     border-width: 1px 1px 0px;
     border-style: solid;
-    border-color: rgb(239, 239, 239);
+    border-color: #f0f0f0;
     border-image: initial;
     margin-bottom: 0.5rem;
 }
 
 .category-item-container {
     padding: 0.5rem 1rem;
-    border-bottom: 1px solid rgb(239, 239, 239);
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .category-item {
