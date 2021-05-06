@@ -2,5 +2,6 @@
     "portalUrl": "https://hqfao.maps.arcgis.com/",
     "defaultItem": "2b2505a026fc494883b926b10f9e3cfb",
     "sharePath": "https://data-in-emergencies-hqfao.hub.arcgis.com/app/dbb6741539534b6486a9dbd6146084e6#item={id}",
-    "groupId": "2bafc67b113b41d184a82ebaeededee3"
+    "groupId": "2bafc67b113b41d184a82ebaeededee3",
+    "parentCat": "OER - Data in Emergencies (DO NOT DELETE!!!)"
 }
