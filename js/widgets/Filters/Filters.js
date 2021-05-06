@@ -271,7 +271,7 @@ define([
 
             getPortalCategories: function () {
                 esriRequest(
-                    `${this.config.portalUrl}/sharing/rest/portals/self/categoryschema`,
+                    `${this.config.portalUrl}/sharing/rest/community/groups/${this.config.groupId}/categorySchemaa`,
                     {
                         query: {
                             f: "json",
@@ -280,7 +280,7 @@ define([
                     }
                 ).then((response) => {
                     this.setCategories(
-                        response.data.categorySchema[0].categories.filter(d => d.title === "OER - Data in Emergencies (DO NOT DELETE!!!)").categories
+                        response.data.categorySchema[0].categories
                     );
                 });
             },
