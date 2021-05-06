@@ -271,7 +271,7 @@ define([
 
             getPortalCategories: function () {
                 esriRequest(
-                    `${this.config.portalUrl}/sharing/rest/community/groups/${this.config.groupId}/categorySchemaa`,
+                    `${this.config.portalUrl}/sharing/rest/community/groups/${this.config.groupId}/categorySchema`,
                     {
                         query: {
                             f: "json",
