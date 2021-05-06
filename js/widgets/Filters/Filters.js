@@ -280,7 +280,7 @@ define([
                     }
                 ).then((response) => {
                     this.setCategories(
-                        response.data.categorySchema[0].categories
+                        response.data.categorySchema[0].categories.filter(d => d.title === `${this.config.parentCat}`).categories
                     );
                 });
             },
