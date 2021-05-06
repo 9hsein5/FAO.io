@@ -27,7 +27,9 @@ define([
             },
 
             postCreate: function () {
-                this.cardImage.src = `${this.config.portalUrl}/sharing/content/items/${this.result.id}/info/${this.result.thumbnail}`;
+                if (this.result.thumbnail) {
+                    this.cardImage.src = `${this.config.portalUrl}/sharing/content/items/${this.result.id}/info/${this.result.thumbnail}`;
+                }
                 this.titleDiv.title = this.result.title;
                 this.titleLink.href = `${this.config.portalUrl}/home/item.html?id=${this.result.id}`;
                 this.titleLink.innerText = this.result.title;
@@ -35,6 +37,7 @@ define([
                 this.descriptionP.innerText = this.snipDesc(
                     this.result.snippet
                 );
+                this.handleEvents();
             },
 
             snipDesc: function (desc) {
@@ -44,6 +47,18 @@ define([
                     desc = desc.substring(0, 72);
                     return desc.substring(0, desc.lastIndexOf(" ")) + "...";
                 }
+            },
+
+            handleEvents: function () {
+                on(this.metadataBtn, "click", () => {
+                    window.open(
+                        `${this.config.portalUrl}/home/item.html?id=${this.result.id}`,
+                        "_blank"
+                    );
+                });
+                on(this.viewBtn, "click", () => {
+                    this.emit("item-selected", this.result.id);
+                });
             },
         }
     );

@@ -16,7 +16,6 @@ input {
 }
 
 .root-container {
-    background: green;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -107,16 +106,25 @@ input {
     .drawer.closed .handle .content {
         transform: rotate(270deg);
     }
+
+    .app-header .sharebox-container {
+        width: 100% !important;
+    }
 }
 
 .app-container {
-    background: red;
     position: relative;
     flex-grow: 1;
 }
 
 .app-header {
-    background: white;
+    padding: 10px 0.75rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: rgb(255, 255, 255);
+    box-shadow: rgb(0 0 0 / 20%) 0px 2px 6px;
+    box-sizing: border-box;
     position: absolute;
     top: 15px;
     right: 20px;
@@ -125,8 +133,87 @@ input {
     z-index: 1;
 }
 
+.app-header .title-container {
+    flex: 1 1 1px;
+    font-weight: 700;
+    padding: 0px 0.75rem;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.app-header .share-icon-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 0.5rem;
+    border-left: none;
+    cursor: pointer;
+}
+
+.app-header .sharebox-container {
+    position: absolute;
+    top: 63px;
+    right: 0px;
+    z-index: 5;
+    width: 350px;
+}
+
+.app-header .sharebox-container.hidden {
+    display: none;
+}
+
+.app-header .sharebox-container .sharebox {
+    width: 100%;
+    padding: 0.75rem;
+    box-sizing: border-box;
+    background: rgb(0, 121, 193);
+    border: 1px solid rgb(0, 94, 149);
+    color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 6px;
+}
+
+.sharebox .title-container {
+    margin-bottom: 0.75rem;
+    padding: 0px;
+}
+
+.sharebox .title-container .title {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.sharebox .title-container .closeicon {
+    cursor: pointer;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    float: right;
+}
+
+.sharebox .sharelink-container {
+    width: 100%;
+    display: flex;
+}
+
+.sharebox .sharelink-container input {
+    flex-grow: 1;
+    outline: none;
+    height: 2rem;
+    border: 1px solid transparent;
+}
+
+.sharebox .sharelink-container .copybtn {
+    height: 2rem;
+    background: rgb(0, 94, 149);
+    border: 1px solid rgb(0, 94, 149);
+    color: white;
+    height: 100%;
+    width: 4rem;
+    cursor: pointer;
+}
+
 .map-container {
-    background: white;
     position: absolute;
     top: 0px;
     bottom: 0px;
@@ -138,7 +225,7 @@ input {
 
 .searchandtoggle-container {
     display: flex;
-    border: 2px solid #f0f0f0;
+    border: 2px solid rgb(239, 239, 239);
     box-sizing: border-box;
 }
 
@@ -236,7 +323,7 @@ input {
 
 .filter-toggler {
     width: 50px;
-    border-left: 1px solid #f0f0f0;
+    border-left: 1px solid rgb(239, 239, 239);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -260,14 +347,14 @@ input {
 .categories-list {
     border-width: 1px 1px 0px;
     border-style: solid;
-    border-color: #f0f0f0;
+    border-color: rgb(239, 239, 239);
     border-image: initial;
     margin-bottom: 0.5rem;
 }
 
 .category-item-container {
     padding: 0.5rem 1rem;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid rgb(239, 239, 239);
 }
 
 .category-item {
@@ -415,4 +502,30 @@ input {
     flex-flow: row nowrap;
     place-content: stretch flex-start;
     align-items: stretch;
+}
+
+.result-card .card-content .interaction-container .btn {
+    width: 48%;
+    margin: 0px 0.1rem;
+    text-align: center;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    padding: 0.3rem 0.5rem;
+    color: #0079c1;
+    background: #fff;
+    border-color: #0079c1;
+    position: relative;
+    display: inline-block;
+    border: 1px solid #0079c1;
+    border-radius: 0;
+    box-sizing: border-box;
+    transition: all 0.05s linear;
+    cursor: pointer;
+}
+
+.result-card .card-content .interaction-container .btn:hover {
+    color: #fff;
+    background: #005e95;
+    border-color: #005e95;
+    text-decoration: none;
 }

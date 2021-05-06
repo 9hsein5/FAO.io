@@ -11,6 +11,7 @@ define([
     "dojo/Evented",
     "widgets/CategoryList/CategoryList",
     "widgets/FilterBadge/FilterBadge",
+    "widgets/AutocompleteOption/AutocompleteOption",
     "esri/request",
 ], function (
     declare,
@@ -25,6 +26,7 @@ define([
     Evented,
     CategoryList,
     FilterBadge,
+    AutocompleteOption,
     esriRequest
 ) {
     return declare(
@@ -55,7 +57,58 @@ define([
             },
 
             loadAndDisplayAutocompleteOptions: function () {
-                console.log("Getting Options");
+                esriRequest(
+                    `${this.config.portalUrl}/sharing/rest/search/suggest`,
+                    {
+                        query: {
+                            f: "json",
+                            suggest: this.searchbarInput.value,
+                            filters: `(type:("Web Map") -type:"Web Mapping Application")${
+                                this.config.isAGOL
+                                    ? " AND orgid:" + this.config.portalId
+                                    : ""
+                            }`,
+                        },
+                    }
+                ).then((response) => {
+                    dijit.registry
+                        .findWidgets(this.autocompleteList)
+                        .forEach((option) => {
+                            option.destroyRecursive();
+                        });
+                    response.data.results.forEach((result) => {
+                        on(
+                            new AutocompleteOption(
+                                { item: result },
+                                domConstruct.create(
+                                    "div",
+                                    {},
+                                    this.autocompleteList
+                                )
+                            ),
+                            "item-selected",
+                            (newSearch) => {
+                                this.searchbarInput.value = newSearch;
+                                this.search();
+                                domClass.add(
+                                    this.autocompleteOptionsContainer,
+                                    "hidden"
+                                );
+                            }
+                        );
+                    });
+                    if (response.data.results.length > 0) {
+                        domClass.remove(
+                            this.autocompleteOptionsContainer,
+                            "hidden"
+                        );
+                    } else {
+                        domClass.add(
+                            this.autocompleteOptionsContainer,
+                            "hidden"
+                        );
+                    }
+                });
             },
 
             handleEvents: function () {
@@ -86,6 +139,7 @@ define([
                     this.searchbarInput.value = "";
                     showHideClearBtn();
                     this.search();
+                    domClass.add(this.autocompleteOptionsContainer, "hidden");
                 });
 
                 on(this.filterToggler, "click", () => {
@@ -150,7 +204,7 @@ define([
                                 ? "(" + this.searchbarInput.value + ") "
                                 : " "
                         }(type:("Web Map") -type:"Web Mapping Application")${
-                            this.config.isAGOL && false /*TODO: remove false*/
+                            this.config.isAGOL && false
                                 ? " orgid:" + this.config.portalId
                                 : ""
                         }`,

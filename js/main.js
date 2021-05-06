@@ -7,6 +7,10 @@ define([
     "dojo/dom-construct",
     "widgets/Filters/Filters",
     "widgets/ResultsGallery/ResultsGallery",
+    "esri/WebMap",
+    "esri/views/MapView",
+    "esri/widgets/Expand",
+    "esri/widgets/Legend",
     "dojo/domReady!",
 ], function (
     declare,
@@ -16,7 +20,11 @@ define([
     esriRequest,
     domConstruct,
     Filters,
-    ResultsGallery
+    ResultsGallery,
+    WebMap,
+    MapView,
+    Expand,
+    Legend
 ) {
     return declare(null, {
         config: null,
@@ -46,6 +54,21 @@ define([
                 { config: this.config },
                 domConstruct.create("div", {}, query("#drawerContent")[0])
             );
+            this.mapview = new MapView({
+                container: "mapview-container",
+            });
+            this.newMap(this.config.defaultItem);
+            this.mapview.ui.add(
+                new Expand({
+                    expandIconClass: "esri-icon-legend",
+                    view: this.mapview,
+                    content: new Legend({
+                        container: domConstruct.create("div"),
+                        view: this.mapview,
+                    }),
+                }),
+                "bottom-left"
+            );
             this.handleEvents();
         },
 
@@ -53,6 +76,23 @@ define([
             on(query(".drawer .handle")[0], "click", () => {
                 domClass.toggle(query(".drawer")[0], "closed");
             });
+
+            on(query(".share-icon-container")[0], "click", () => {
+                domClass.toggle(query(".sharebox-container")[0], "hidden");
+            });
+
+            on(query(".sharebox .closeicon")[0], "click", () => {
+                domClass.add(query(".sharebox-container")[0], "hidden");
+            });
+
+            on(query(".sharebox .copybtn")[0], "click", () => {
+                const sharelink = query("#sharelink")[0];
+                sharelink.blur();
+                sharelink.focus();
+                sharelink.select();
+                document.execCommand("copy");
+            });
+
             on(this.filters, "new-results", (resultInfo) => {
                 this.gallery.newResults(resultInfo);
                 this.updateBottomScroll();
@@ -61,6 +101,7 @@ define([
                 this.gallery.addResults(resultInfo);
                 this.updateBottomScroll();
             });
+            on(this.gallery, "item-selected", this.newMap.bind(this));
         },
 
         updateBottomScroll: function () {
@@ -98,6 +139,30 @@ define([
                     resolve();
                 }
             });
+        },
+
+        newMap: function (id) {
+            query("#maptitle")[0].innerText = "";
+            query("#sharelink")[0].value = "";
+
+            const webmap = new WebMap({
+                portalItem: {
+                    id: id,
+                },
+                portal: {
+                    url: this.config.portalUrl,
+                },
+            });
+
+            webmap.when(() => {
+                query("#maptitle")[0].innerText = webmap.portalItem.title;
+                query("#sharelink")[0].value = this.config.sharePath.replace(
+                    "{id}",
+                    id
+                );
+            });
+
+            this.mapview.map = webmap;
         },
     });
 });

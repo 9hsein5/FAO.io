@@ -52,6 +52,9 @@ define([
                         { config: this.config, result },
                         domConstruct.create("div", {}, this.resultsContainer)
                     );
+                    on(resultCard, "item-selected", (selectedId) => {
+                        this.emit("item-selected", selectedId);
+                    });
                     this.displayedResults.push(resultCard);
                 });
             },
@@ -63,6 +66,9 @@ define([
                         { config: this.config, result },
                         domConstruct.create("div", {}, this.resultsContainer)
                     );
+                    on(resultCard, "item-selected", (selectedId) => {
+                        this.emit("item-selected", selectedId);
+                    });
                     this.displayedResults.push(resultCard);
                 });
             },
