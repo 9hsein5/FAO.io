@@ -58,7 +58,7 @@ define([
 
             loadAndDisplayAutocompleteOptions: function () {
                 esriRequest(
-                    `${this.config.portalUrl}/sharing/rest/search/suggest`,
+                    `${this.config.portalUrl}/sharing/rest/content/groups/${this.config.groupId}/search/suggest`,
                     {
                         query: {
                             f: "json",
@@ -196,7 +196,7 @@ define([
             },
 
             search: function () {
-                esriRequest(`${this.config.portalUrl}/sharing/rest/search`, {
+                esriRequest(`${this.config.portalUrl}/sharing/rest/content/groups/${this.config.groupId}/search`, {
                     query: {
                         f: "json",
                         q: `${
@@ -233,7 +233,7 @@ define([
             addResults: function () {
                 if (this.lastSearchResponse.nextStart > 0) {
                     esriRequest(
-                        `${this.config.portalUrl}/sharing/rest/search`,
+                        `${this.config.portalUrl}/sharing/rest/content/groups/${this.config.groupId}/search`,
                         {
                             query: {
                                 f: "json",
