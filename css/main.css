@@ -407,7 +407,7 @@ input {
 .clear-all-btn {
     cursor: pointer;
     text-decoration: underline;
-    color: blue;
+    color: #0079c1;
 }
 
 .gallery-title {
