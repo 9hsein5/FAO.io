@@ -1,5 +1,6 @@
 {
     "portalUrl": "https://hqfao.maps.arcgis.com/",
     "defaultItem": "6fc05b9e646f4869b655aa0907c40735",
-    "sharePath": "https://hqfao.maps.arcgis.com/home/item.html?id={id}"
+    "sharePath": "https://data-in-emergencies-hqfao.hub.arcgis.com/app/dbb6741539534b6486a9dbd6146084e6#item={id}",
+    "groupId": "ebeab829fe9b429ba8271cdd63ab37ee"
 }
