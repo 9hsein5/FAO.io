@@ -1,5 +1,5 @@
 {
-    "portalUrl": "https://hqfao.maps.arcgis.com/"
+    "portalUrl": "https://hqfao.maps.arcgis.com/",
     "defaultItem": "6fc05b9e646f4869b655aa0907c40735",
     "sharePath": "https://hqfao.maps.arcgis.com/home/item.html?id={id}"
 }
