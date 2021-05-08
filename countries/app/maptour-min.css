@@ -6392,8 +6392,12 @@ textarea {
 }
 
 #footer {
-	display: none;
-	height: 0
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	background-color: #E5E5E5
 }
 
 .side-panel #footer {
@@ -6408,13 +6412,18 @@ textarea {
 }
 
 .modern-layout.mobile-view #footer {
-	display: none;
-	height: 0
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	right: 0
 }
 
 .modern-layout #footer {
-	display: none;
-	height: 0
+	width: auto;
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	right: 10px
 }
 
 #mainMap svg>g {}
