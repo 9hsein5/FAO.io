@@ -8938,7 +8938,7 @@ screen and (orientation:portrait) {
 		display: none
 	}
 	#openHeaderMobile {
-		display: block
+		display: none
 	}
 	#footerMobile {
 		display: block
