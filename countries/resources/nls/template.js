@@ -45,7 +45,7 @@ define({
 				hideIntro: "HIDE TITLE",
 				navList: "List",
 				navMap: "Map",
-				navInfo: "Media",
+				navInfo: "Profile",
 				introStartBtn: "Start"
 			},
 			desktopHTML: {
