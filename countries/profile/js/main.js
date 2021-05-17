@@ -85,7 +85,7 @@ define([
             }
 
             let hasStats = false;
-            for (var i = 1; i <= 3; i++) {
+            for (var i = 1; i <= 4; i++) {
                 if (attributes[this.config.fields[`stat${i}`]]) {
                     hasStats = true;
                     dom.byId(`stat${i}`).innerText =
