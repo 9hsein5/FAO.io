@@ -14,7 +14,9 @@
         "stat2": "stat2",
         "stat2subtitle": "stat2_desc",
         "stat3": "stat3",
-        "stat3subtitle": "stat3_desc"
+        "stat3subtitle": "stat3_desc",
+        "stat4": "stat4",
+        "stat4subtitle": "stat4_desc"
     },
     "countryNotFoundMsg": "Country not found",
     "maxResultCount": 6
