@@ -1,0 +1,21 @@
+{
+    "portalUrl": "https://hqfao.maps.arcgis.com/",
+    "iso": "LBR",
+    "showAllPath": "https://hqfao.maps.arcgis.com/home/group.html?id=c27d3dbba52343c6addfd61edaaa3e86&view=list&categories=%5B%22%2FCategories%2FCountries%2F{iso}%22%5D#content",
+    "groupId": "c27d3dbba52343c6addfd61edaaa3e86",
+    "infoSource": "https://services5.arcgis.com/sjP4Ugu5s0dZWLjd/arcgis/rest/services/HubCountriesApp/FeatureServer/0",
+    "isoField": "iso",
+    "fields": {
+        "image": "bg_url",
+        "name": "name",
+        "text": "long_description",
+        "stat1": "stat1",
+        "stat1subtitle": "stat1_desc",
+        "stat2": "stat2",
+        "stat2subtitle": "stat2_desc",
+        "stat3": "stat3",
+        "stat3subtitle": "stat3_desc"
+    },
+    "countryNotFoundMsg": "Country not found",
+    "maxResultCount": 6
+}
