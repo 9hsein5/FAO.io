@@ -29,7 +29,7 @@ define([
             },
 
             fillInfo: function () {
-                this.itemLink.href = `${this.config.sharePath}/${this.item.id}`;
+                this.itemLink.href = `${this.config.sharePath}datasets/${this.item.id}`;
                 
                 if (this.item.thumbnail) {
                     this.itemImage.src = `${this.config.portalUrl}/sharing/content/items/${this.item.id}/info/${this.item.thumbnail}`;
