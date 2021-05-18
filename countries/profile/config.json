@@ -1,7 +1,7 @@
 {
     "portalUrl": "https://hqfao.maps.arcgis.com/",
     "iso": "AFG",
-    "showAllPath": "https://hqfao.maps.arcgis.com/home/group.html?id=c27d3dbba52343c6addfd61edaaa3e86&view=list&categories=%5B%22%2FCategories%2FCountries%2F{iso}%22%5D#content",    
+    "showAllPath": "https://hqfao.maps.arcgis.com/apps/instant/filtergallery/index.html?appid=d6ff4c63cc754e0aa83e0b63ce3efaf4&categories=%2Fcategories%2Fcountries%2F{iso}",    
     "groupId": "c27d3dbba52343c6addfd61edaaa3e86",
     "infoSource": "https://services5.arcgis.com/sjP4Ugu5s0dZWLjd/arcgis/rest/services/HubCountriesApp/FeatureServer/0",
     "isoField": "iso",
