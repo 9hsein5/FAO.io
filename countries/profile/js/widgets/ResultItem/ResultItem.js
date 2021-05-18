@@ -29,8 +29,8 @@ define([
             },
 
             fillInfo: function () {
-                this.itemLink.href = `${this.config.portalUrl}/home/item.html?id=${this.item.id}`;
-
+                this.itemLink.href = `${this.config.sharePath}/${this.item.id}`;
+                
                 if (this.item.thumbnail) {
                     this.itemImage.src = `${this.config.portalUrl}/sharing/content/items/${this.item.id}/info/${this.item.thumbnail}`;
                     this.itemImage.alt = this.item.snippet;
