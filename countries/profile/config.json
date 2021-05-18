@@ -1,5 +1,6 @@
 {
     "portalUrl": "https://hqfao.maps.arcgis.com/",
+    "sharePath": "https://data-in-emergencies-hqfao.hub.arcgis.com/datasets/{id}"
     "iso": "AFG",
     "showAllPath": "https://hqfao.maps.arcgis.com/apps/instant/filtergallery/index.html?appid=d6ff4c63cc754e0aa83e0b63ce3efaf4&categories=%2Fcategories%2Fcountries%2F{iso}",    
     "groupId": "c27d3dbba52343c6addfd61edaaa3e86",
