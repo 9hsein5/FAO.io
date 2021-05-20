@@ -13,6 +13,7 @@ define([
     "esri/widgets/Legend",
     "esri/widgets/Search",
     "esri/widgets/Home",
+    "esri/widgets/LayerList",
     "dojo/domReady!",
 ], function (
     declare,
@@ -28,7 +29,8 @@ define([
     Expand,
     Legend,
     Search,
-    Home
+    Home,
+    LayerList
 ) {
     return declare(null, {
         config: null,
@@ -72,9 +74,19 @@ define([
                 expandIconClass: "esri-icon-legend",
                 view: this.mapview,
                 expanded: true,
-                content: new Legend({
-                    container: domConstruct.create("div"),
+                content: new LayerList({
+                    //container: domConstruct.create("div"),
                     view: this.mapview,
+                    listItemCreatedFunction: function(event) {
+                        const item = event.item;
+                        if (item.layer.type != "group") {
+                          // don't show legend twice
+                          item.panel = {
+                            content: "legend",
+                            open: true
+                          };
+                        }
+                    }
                 }),
             });
             this.mapview.ui.add(this.legendExpand, "bottom-left");
