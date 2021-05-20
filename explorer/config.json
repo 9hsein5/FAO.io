@@ -3,6 +3,6 @@
     "defaultItem": "2b2505a026fc494883b926b10f9e3cfb",
     "sharePath": "https://data-in-emergencies-hqfao.hub.arcgis.com/datasets/{id}",
     "groupId": "a76262e9167148539f69ebea657f5456",
-    "shareMsg": "Hello, Check out this great webmap at this link {link}",
+    "shareMsg": "Hello,%0DCheck out this great webmap at this link {link}",
     "title": "FAO Application | {maptitle}"
 }
