@@ -69,6 +69,7 @@ define([
             this.legendExpand = new Expand({
                 expandIconClass: "esri-icon-legend",
                 view: this.mapview,
+                expanded: true,
                 content: new Legend({
                     container: domConstruct.create("div"),
                     view: this.mapview,
