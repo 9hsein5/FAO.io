@@ -12,6 +12,7 @@ define([
     "esri/widgets/Expand",
     "esri/widgets/Legend",
     "esri/widgets/Search",
+    "esri/widgets/Home",
     "dojo/domReady!",
 ], function (
     declare,
@@ -26,7 +27,8 @@ define([
     MapView,
     Expand,
     Legend,
-    Search
+    Search,
+    Home
 ) {
     return declare(null, {
         config: null,
@@ -76,6 +78,10 @@ define([
                 }),
             });
             this.mapview.ui.add(this.legendExpand, "bottom-left");
+            this.home = new Home({
+                view: this.mapview
+              });
+            this.mapview.ui.add(this.home, "top-left");
             this.searchExpand = new Expand({
                 expandIconClass: "esri-icon-search",
                 view: this.mapview,
