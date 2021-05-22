@@ -10,7 +10,6 @@ define([
     "esri/WebMap",
     "esri/views/MapView",
     "esri/widgets/Expand",
-    "esri/widgets/Legend",
     "esri/widgets/Search",
     "esri/widgets/Home",
     "esri/widgets/LayerList",
@@ -27,7 +26,6 @@ define([
     WebMap,
     MapView,
     Expand,
-    Legend,
     Search,
     Home,
     LayerList
@@ -90,10 +88,10 @@ define([
                 }),
             });
             this.mapview.ui.add(this.legendExpand, "bottom-left");
-            this.home = new Home({
+            this.homeWidget = new Home({
                 view: this.mapview
-              });
-            this.mapview.ui.add(this.home, "top-left");
+            });
+            this.mapview.ui.add(this.homeWidget, "top-left");
             this.searchExpand = new Expand({
                 expandIconClass: "esri-icon-search",
                 view: this.mapview,
@@ -273,6 +271,10 @@ define([
                     webmap.portalItem.title
                 );
                 this.mapview.goTo(webmap.initialViewProperties.viewpoint);
+                this.homeWidget.goToOverride = function(view, goToParams) {
+                    goToParams.target = webmap.initialViewProperties.viewpoint;
+                    return view.goTo(goToParams.target, goToParams.options);
+                };
             });
 
             this.mapview.map = webmap;
