@@ -36,7 +36,7 @@ define([
                     this.cardImage.src = `${this.config.portalUrl}/sharing/content/items/${this.result.id}/info/${this.result.thumbnail}`;
                 }
                 this.titleDiv.title = this.result.title;
-                this.titleLink.href = `${this.config.portalUrl}/home/item.html?id=${this.result.id}`;
+                this.titleLink.href = `${this.config.hublUrl}/maps/${this.result.id}/about`;
                 this.titleLink.innerText = this.result.title;
                 this.descriptionP.title = this.result.snippet;
                 this.descriptionP.innerText = this.snipDesc(
@@ -63,7 +63,7 @@ define([
             handleEvents: function () {
                 on(this.metadataBtn, "click", () => {
                     window.open(
-                        `${this.config.portalUrl}/home/item.html?id=${this.result.id}`,
+                        `${this.config.hublUrl}/maps/${this.result.id}/about`,
                         "_blank"
                     );
                 });
