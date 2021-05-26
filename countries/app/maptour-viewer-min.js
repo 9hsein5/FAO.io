@@ -13262,7 +13262,7 @@ define("storymaps/ui/loadingIndicator/LoadingIndicator", ["dojo/dom"], function(
 
           function Q(t) {
               console.log("selectedPointChange_afterStep2");
-              var n = app.data.getCurrentIndex(),
+              var n = app.data.getCurrentIndex() !== null ? app.data.getCurrentIndex() : 0,
                   r = app.data.getCurrentGraphic();
               z(), app.mapTips && app.mapTips.clean(!0), $("body").hasClass("side-panel") && r && P.centerMap(r.geometry);
               if (app.isFirstUserAction && !t) {
