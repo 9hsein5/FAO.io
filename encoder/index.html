@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <table border="0" cellpadding="1" cellspacing="1" style="background-color:#ffffff; width:400px">
+      <tbody>
+        <tr>
+          <td>&nbsp;
+          <div>
+          <div style="padding:10px">
+          <div>
+          <div>
+          <div>
+          <div>
+          <div><strong>Go to the source</strong></div>
+          <div>
+          <div style="border:0px solid var(--light-300)">
+          <div>
+          <div>
+          <div>
+          <div>
+          <div>
+          <div>
+          <p><span style="font-size:25px"><a id="encodeFilter" href="" style="font-size:25px;" target="_blank">Data-sets</a></span></p>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <script type="text/javascript">
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var filter = `{\"round\":[${urlParams.get('round')},${urlParams.get('round')}],\"admin0_3isocode\":[\"${urlParams.get('iso')}\"]}`;
+    var filter_enc = encodeURIComponent(window.btoa(filter));
+    var url = `https://data-in-emergencies.fao.org/datasets/${urlParams.get('item_id')}/explore?filters=${filter_enc}`;
+    document.getElementById("encodeFilter").href = url;
+    </script>
+  </body>
+</html>
