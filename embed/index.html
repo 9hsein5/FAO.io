@@ -30,7 +30,7 @@
     <body>
         <iframe id="frame" frameborder="0" marginheight="0" marginwidth="0" width="100%" height="100%" scrolling="auto"></iframe>
         <script>
-            var queryString = window.location.search;
+            var queryString = window.parent.location.search;
             var urlParams = new URLSearchParams(queryString);
             var isoParam = urlParams.get('iso') !== null ? urlParams.get('iso') : "AFG";
             var request = new XMLHttpRequest();
