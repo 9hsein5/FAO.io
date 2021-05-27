@@ -33,6 +33,7 @@
             var queryString = document.location.search;
             var urlParams = new URLSearchParams(queryString);
             var isoParam = urlParams.get('iso') !== null ? urlParams.get('iso') : "AFG";
+            console.log(isoParam);
             var request = new XMLHttpRequest();
             request.open('GET', `https://services5.arcgis.com/sjP4Ugu5s0dZWLjd/ArcGIS/rest/services/HubCountriesApp/FeatureServer/0/query?where=iso+%3D+%27${isoParam}%27&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=customSortOrder&returnGeometry=false&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pjson`, true);
             request.onload = function () {
