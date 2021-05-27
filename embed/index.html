@@ -32,11 +32,12 @@
         <script>
             var queryString = window.location.search;
             var urlParams = new URLSearchParams(queryString);
+            var isoParam = isEmpty(urlParams.get('iso')) ? "AFG" : urlParams.get('iso');
             var request = new XMLHttpRequest();
-            request.open('GET', `https://services5.arcgis.com/sjP4Ugu5s0dZWLjd/ArcGIS/rest/services/HubCountriesApp/FeatureServer/0/query?where=iso+%3D+%27${urlParams.get('iso')}%27&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=customSortOrder&returnGeometry=false&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pjson`, true);
+            request.open('GET', `https://services5.arcgis.com/sjP4Ugu5s0dZWLjd/ArcGIS/rest/services/HubCountriesApp/FeatureServer/0/query?where=iso+%3D+%27${isoParam}%27&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=customSortOrder&returnGeometry=false&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pjson`, true);
             request.onload = function () {
                 var data = JSON.parse(this.response);
-                if (request.status >= 200 && request.status < 400 && urlParams.get('iso') != NULL) {
+                if (request.status >= 200 && request.status < 400) {
                     var url = `https://9hsein5.github.io/FAO.io/countries?index=${data.features[0].attributes.customSortOrder}`;
                     document.getElementById("frame").src = url;
                 } else {
