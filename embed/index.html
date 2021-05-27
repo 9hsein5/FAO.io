@@ -40,7 +40,8 @@
                     var url = `https://9hsein5.github.io/FAO.io/countries?index=${data.features[0].attributes.customSortOrder}`;
                     document.getElementById("frame").src = url;
                 } else {
-                    console.log('error');
+                    var url = `https://9hsein5.github.io/FAO.io/countries?index=1`;
+                    document.getElementById("frame").src = url;
                 }
             }
             request.send();
