@@ -37,7 +37,7 @@
             request.onload = function () {
                 var data = JSON.parse(this.response);
                 if (request.status >= 200 && request.status < 400) {
-                    var url = `/countries?index=${data.features[0].attributes.customSortOrder}`;
+                    var url = `https://9hsein5.github.io/FAO.io/countries?index=${data.features[0].attributes.customSortOrder}`;
                     document.getElementById("frame").src = url;
                 } else {
                     console.log('error');
