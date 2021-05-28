@@ -43,7 +43,7 @@ define([
                 () => {
                     console.error("No features found matching provided ISO");
                     this.displayCountryInfo({
-                        name: this.config.iso || null,
+                        name: this.config.countryNotFoundMsg || null,
                     });
                 }
             );
