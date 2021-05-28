@@ -19,6 +19,6 @@
         "stat4": "stat4",
         "stat4subtitle": "stat4_desc"
     },
-    "countryNotFoundMsg": "Country not found",
+    "countryNotFoundMsg": "No country have been selected",
     "maxResultCount": 6
 }
