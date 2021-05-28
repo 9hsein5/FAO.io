@@ -42,10 +42,9 @@ define([
                 },
                 () => {
                     console.error("No features found matching provided ISO");
-                    this.displayCountryInfo(this.config.iso);
-                    /*this.displayCountryInfo({
-                        name: this.config.countryNotFoundMsg || null,
-                    });*/
+                    this.displayCountryInfo({
+                        name: this.config.iso || null,
+                    });
                 }
             );
             this.getCountryResults().then((results) => {
