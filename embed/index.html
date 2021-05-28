@@ -35,6 +35,7 @@
             console.log(document.baseURI);
             console.log(document.all);
             console.log(document.location.search);
+            console.log(document.location.href);
             var queryString = top.location.search;
             var urlParams = new URLSearchParams(queryString);
             var isoParam = urlParams.get('iso') !== null ? urlParams.get('iso') : "AFG";
