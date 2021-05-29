@@ -29,7 +29,7 @@ define([
             var urlParams = new URLSearchParams(queryString);
             var isoParam = urlParams.get('iso');
             console.log(isoParam);
-            this.config.iso = (isoParam !== "{ISO}") ? this.config.iso : "AFG";
+            this.config.iso = (isoParam == "{ISO}") ? "AFG" : this.config.iso;
         },
 
         paramsToJSON: function () {
