@@ -25,9 +25,11 @@ define([
             });
             console.log(this.config.iso);
             console.log(location.search);
-            console.log(window.location.search);
-            console.log(document.location.search);
-            this.config.iso = (this.config.iso !== "{ISO}") ? this.config.iso : "AFG";
+            var queryString = location.search;
+            var urlParams = new URLSearchParams(queryString);
+            var isoParam = urlParams.get('iso');
+            console.log(isoParam);
+            this.config.iso = (isoParam !== "%EF%BB%BF{ISO}%EF%BB%BF") ? this.config.iso : "AFG";
         },
 
         paramsToJSON: function () {
