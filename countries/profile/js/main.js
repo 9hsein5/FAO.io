@@ -23,13 +23,6 @@ define([
             this.getPortalId().then(() => {
                 this.init();
             });
-            console.log(this.config.iso);
-            console.log(location.search);
-            var queryString = location.search;
-            var urlParams = new URLSearchParams(queryString);
-            var isoParam = urlParams.get('iso');
-            console.log(isoParam);
-            this.config.iso = (isoParam == "{ISO}") ? "AFG" : this.config.iso;
         },
 
         paramsToJSON: function () {
@@ -37,7 +30,7 @@ define([
             const params = urlParams.entries();
             const result = {};
             for (const [key, value] of params) {
-                result[key] = value;
+                result[key] = (!/[^a-zA-Z]/i.test(value)) ? value : "AFG";
             }
             return result;
         },
