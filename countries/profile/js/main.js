@@ -23,6 +23,7 @@ define([
             this.getPortalId().then(() => {
                 this.init();
             });
+            this.config.iso = (this.config.iso !== "{ISO}") ? this.config.iso : "AFG";
         },
 
         paramsToJSON: function () {
