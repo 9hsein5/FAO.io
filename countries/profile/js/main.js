@@ -23,6 +23,10 @@ define([
             this.getPortalId().then(() => {
                 this.init();
             });
+            console.log(this.config.iso);
+            console.log(location.search);
+            console.log(window.location.search);
+            console.log(document.location.search);
             this.config.iso = (this.config.iso !== "{ISO}") ? this.config.iso : "AFG";
         },
 
