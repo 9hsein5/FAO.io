@@ -10,6 +10,7 @@
         "image": "bg_url",
         "name": "name",
         "text": "long_description",
+        "cropcalendar": "crop_calendar",
         "stat1": "stat1",
         "stat1subtitle": "stat1_desc",
         "stat2": "stat2",
