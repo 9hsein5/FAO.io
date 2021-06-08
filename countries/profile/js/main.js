@@ -105,6 +105,17 @@ define([
             if (attributes[this.config.fields.text] || hasStats) {
                 dom.byId("infoContainer").style = "display: block;";
             }
+            
+            if (attributes[this.config.fields.calendarimg]) {
+                dom.byId("cropCalendar").style = `background-image:url(${
+                    attributes[this.config.fields.calendarimg]
+                });`;
+                dom.byId("cropCalendarContainer").style = "display: block;";
+            } else {
+                dom.byId(
+                    "cropCalendarContainer"
+                ).style = `display: none;`;
+            }
 
             dom.byId("showallLink").href = this.config.showAllPath.replace(
                 "{iso}",
