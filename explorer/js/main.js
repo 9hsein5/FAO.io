@@ -96,7 +96,7 @@ define([
                 expanded: false,
                 content: new BasemapGallery({
                     view: this.mapview
-                });
+                }),
             });
             this.mapview.ui.add(this.basemapGalleryExpand, "top-left");
             this.homeWidget = new Home({
