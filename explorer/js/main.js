@@ -117,6 +117,7 @@ define([
             this.printExpand = new Expand({
                 expandIconClass: "esri-icon-printer",
                 view: this.mapview,
+                expanded: true,
                 content: new Print({
                     view: this.mapview,
                     printServiceUrl:
@@ -174,7 +175,8 @@ define([
             if (query(".sharebox .printbtn")[0]) {
                 on(query(".sharebox .printbtn")[0], "click", () => {
                     this.mapview
-                        .takeScreenshot({format: "png" })
+                        .ui.add(printExpand, "bottom-right");
+                        /*.takeScreenshot({format: "png" })
                         .then(function (screenshot) {
                             screenshotDiv.classList.remove("hide");
                             const screenshotImage = document.getElementsByClassName("js-screenshot-image")[0];
@@ -185,7 +187,8 @@ define([
                         .then(() =>{
                             window.print();
                             screenshotDiv.classList.add("hide");
-                        });
+                        });*/
+                    
                 });
             }
 
