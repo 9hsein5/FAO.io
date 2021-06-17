@@ -14,6 +14,7 @@ define([
     "esri/widgets/Home",
     "esri/widgets/LayerList",
     "esri/widgets/BasemapGallery",
+    "esri/widgets/Print",
     "dojo/domReady!",
 ], function (
     declare,
@@ -30,7 +31,8 @@ define([
     Search,
     Home,
     LayerList,
-    BasemapGallery
+    BasemapGallery,
+    Print
 ) {
     return declare(null, {
         config: null,
@@ -162,7 +164,7 @@ define([
 
             if (query(".sharebox .printbtn")[0]) {
                 on(query(".sharebox .printbtn")[0], "click", () => {
-                    this.mapview
+                    /*this.mapview
                         .takeScreenshot({format: "png" })
                         .then(function (screenshot) {
                             screenshotDiv.classList.remove("hide");
@@ -174,7 +176,15 @@ define([
                         .then(() =>{
                             window.print();
                             screenshotDiv.classList.add("hide");
-                        });
+                        });*/
+                    this.mapview.when(function() {
+                        var print = new Print({
+                            view: this.mapview,
+                            printServiceUrl:
+              "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+                            });
+                        this.mapview.ui.add(print, "top-right");
+                    });
                 });
             }
 
