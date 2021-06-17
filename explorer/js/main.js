@@ -124,7 +124,7 @@ define([
               "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task",
                     templateOptions: {
                         title: "FAO Data in Emergencies Hub",
-                        author: "OER",
+                        author: "Made by: Office of Emergencies and Resilience",
                         copyright: "The Food and Agriculture Organization of the United Nations",
                         legendEnabled: true,
                         attributionEnabled: true
