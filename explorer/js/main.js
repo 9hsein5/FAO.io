@@ -124,6 +124,7 @@ define([
               "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
                 }),
             });
+            this.mapview.ui.add(this.printExpand, "bottom-right");
             this.gallery = new ResultsGallery(
                 { config: this.config },
                 domConstruct.create("div", {}, query("#drawerContent")[0])
@@ -172,11 +173,10 @@ define([
                 });
             }
 
-            if (query(".sharebox .printbtn")[0]) {
+            /*if (query(".sharebox .printbtn")[0]) {
                 on(query(".sharebox .printbtn")[0], "click", () => {
                     this.mapview
-                        .ui.add(printExpand, "bottom-right");
-                        /*.takeScreenshot({format: "png" })
+                        .takeScreenshot({format: "png" })
                         .then(function (screenshot) {
                             screenshotDiv.classList.remove("hide");
                             const screenshotImage = document.getElementsByClassName("js-screenshot-image")[0];
@@ -187,10 +187,10 @@ define([
                         .then(() =>{
                             window.print();
                             screenshotDiv.classList.add("hide");
-                        });*/
+                        });
                     
                 });
-            }
+            }*/
 
             on(this.filters, "new-results", (resultInfo) => {
                 this.gallery.newResults(resultInfo);
