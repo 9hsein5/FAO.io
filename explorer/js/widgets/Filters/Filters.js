@@ -62,7 +62,7 @@ define([
                     {
                         query: {
                             f: "json",
-                            suggest: this.searchbarInput.value,
+                            q: this.searchbarInput.value,
                             filters: `(type:("Web Map") -type:"Web Mapping Application")${
                                 this.config.isAGOL
                                     ? " AND orgid:" + this.config.portalId
