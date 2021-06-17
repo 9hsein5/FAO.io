@@ -123,7 +123,7 @@ define([
                     printServiceUrl:
               "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task",
                     templateOptions: {
-                        title: query("#maptitle")[0].innerText,
+                        title: "FAO Data in Emergencies Hub",
                         author: "OER",
                         copyright: "The Food and Agriculture Organization of the United Nations",
                         legendEnabled: true,
