@@ -13,6 +13,7 @@ define([
     "esri/widgets/Search",
     "esri/widgets/Home",
     "esri/widgets/LayerList",
+    "esri/widgets/BasemapGallery",
     "dojo/domReady!",
 ], function (
     declare,
@@ -28,7 +29,8 @@ define([
     Expand,
     Search,
     Home,
-    LayerList
+    LayerList,
+    BasemapGallery
 ) {
     return declare(null, {
         config: null,
@@ -88,6 +90,15 @@ define([
                 }),
             });
             this.mapview.ui.add(this.legendExpand, "bottom-left");
+            this.basemapGalleryExpand = new Expand({
+                expandIconClass: "esri-icon-basemap",
+                view: this.mapview,
+                expanded: false,
+                content: new BasemapGallery({
+                    view: this.mapview
+                });
+            });
+            this.mapview.ui.add(this.basemapGalleryExpand, "top-left");
             this.homeWidget = new Home({
                 view: this.mapview
             });
