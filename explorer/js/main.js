@@ -114,6 +114,15 @@ define([
                 }),
             });
             this.mapview.ui.add(this.searchExpand, "top-left");
+            this.printExpand = new Expand({
+                expandIconClass: "esri-icon-printer",
+                view: this.mapview,
+                content: new Print({
+                    view: this.mapview,
+                    printServiceUrl:
+              "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+                }),
+            });
             this.gallery = new ResultsGallery(
                 { config: this.config },
                 domConstruct.create("div", {}, query("#drawerContent")[0])
