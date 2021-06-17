@@ -121,7 +121,14 @@ define([
                 content: new Print({
                     view: this.mapview,
                     printServiceUrl:
-              "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+              "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task",
+                    templateOptions: {
+                        title: query("#maptitle")[0].innerText,
+                        author: "OER",
+                        copyright: "The Food and Agriculture Organization of the United Nations",
+                        legendEnabled: true,
+                        attributionEnabled: true
+                    }
                 }),
             });
             this.mapview.ui.add(this.printExpand, "bottom-right");
