@@ -30,11 +30,7 @@ define([
             const params = urlParams.entries();
             const result = {};
             for (const [key, value] of params) {
-                console.log(value);
-                //console.log(!/[^a-zA-Z]/i.test(value));
-                //console.log(/^[a-z]+$/i.test(value));
-                result[key] = (/^[a-z]+$/i.test(value)) ? value : "AFG";
-                console.log(result[key])
+                result[key] = (!/[^a-zA-Z]/i.test(value)) ? value : "AFG";
             }
             return result;
         },
