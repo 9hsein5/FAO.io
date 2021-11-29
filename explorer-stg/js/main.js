@@ -41,7 +41,10 @@ define([
         scrollToBottomSignal: null,
 
         constructor: function (config) {
-            this.config = config;
+            this.config = {
+                ...config,
+                ...this.paramsToJSON(),
+            };
         },
 
         startup: function () {
@@ -51,6 +54,16 @@ define([
             this.getPortalId().then(() => {
                 this.init();
             });
+        },
+        
+        paramsToJSON: function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const params = urlParams.entries();
+            const result = {};
+            for (const [key, value] of params) {
+                    result[key] = value;
+            }
+            return result;
         },
 
         init: function () {
@@ -307,6 +320,21 @@ define([
                     goToParams.target = webmap.initialViewProperties.viewpoint;
                     return view.goTo(goToParams.target, goToParams.options);
                 };
+                const selectedCountry = this.config.iso;
+                const where_clause = (/^[a-zA-Z]{3}$/.test(selectedCountry)) ? "adm0_iso3 = '" + selectedCountry + "'" : "1=1";
+                const featureFilter = {
+                    where: where_clause
+                };
+                this.mapview.map.layers.forEach((layer, index) => {
+                    this.mapview
+                    .whenLayerView(layer)
+                    .then((layerView) => {
+                        if (layer.type === "feature") {
+                            layerView.filter = featureFilter;
+                        }
+                    })
+                    .catch(console.error);
+                });
             });
 
             this.mapview.map = webmap;
@@ -316,13 +344,13 @@ define([
                         window.history.replaceState(
                             { item: id },
                             "",
-                            `?item=${id}`
+                            `?item=${id}&iso=${this.config.iso}`
                         );
                     } else {
                         window.history.pushState(
                             { item: id },
                             "",
-                            `?item=${id}`
+                            `?item=${id}&iso=${this.config.iso}`
                         );
                     }
                 } catch (err) {
