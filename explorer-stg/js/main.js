@@ -127,6 +127,19 @@ define([
                 }),
             });
             this.mapview.ui.add(this.searchExpand, "top-left");
+            /*
+            this.filterWidget = new Search({
+                view: this.mapview,
+                locationEnabled: false,
+                allPlaceholder: "World Countries",
+            });
+            this.filterExpand = new Expand({
+                expandIconClass: "esri-icon-filter",
+                view: this.mapview,
+                content: this.filterWidget
+            });
+            this.mapview.ui.add(this.filterExpand, "top-left");
+            */
             this.printExpand = new Expand({
                 expandIconClass: "esri-icon-printer",
                 view: this.mapview,
@@ -220,6 +233,13 @@ define([
                 this.gallery.addResults(resultInfo);
                 this.updateBottomScroll();
             });
+            /*
+            on(this.filterWidget, "select-result", function(event){
+                const selectedCountry = event.result.name;
+                const where_clause = "adm0_iso3 = '" + selectedCountry + "'";
+                console.log("The selected Country is: ", selectedCountry);
+            });
+            */
             on(this.gallery, "item-selected", this.newMap.bind(this));
             on(window, "popstate", (evt) => {
                 console.log(evt);
@@ -326,6 +346,13 @@ define([
                     where: where_clause
                 };
                 this.mapview.map.layers.forEach((layer, index) => {
+                    layer.definitionExpression = where_clause;
+                    layer.queryExtent().then((response) => {
+                        this.mapview.goTo(response.extent).catch((error) => {
+                            console.error(error);
+                        });
+                    });
+                    /*
                     this.mapview
                     .whenLayerView(layer)
                     .then((layerView) => {
@@ -333,7 +360,7 @@ define([
                             layerView.filter = featureFilter;
                         }
                     })
-                    .catch(console.error);
+                    .catch(console.error);*/
                 });
             });
 
