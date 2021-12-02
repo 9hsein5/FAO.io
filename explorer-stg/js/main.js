@@ -85,7 +85,7 @@ define([
         },
 
         handleSignedOut: function() {
-            console.log('Signed Out')
+            console.log('Signed Out');
         },
         
         paramsToJSON: function () {
