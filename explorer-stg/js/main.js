@@ -59,7 +59,7 @@ define([
             });
             const info = new OAuthInfo({
                 appId: "7md3uQI5oZ1ZRNIJ",
-                popup: false
+                popup: true
             });
             esriId.registerOAuthInfos([info]);
             esriId
