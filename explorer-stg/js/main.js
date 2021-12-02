@@ -80,7 +80,7 @@ define([
             const portal = new Portal();
             portal.load().then(() => {
                 const results = { name: portal.user.fullName, username: portal.user.username };
-                console.log(results);
+                console.log("Signed In");
             });
         },
 
