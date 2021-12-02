@@ -15,6 +15,9 @@ define([
     "esri/widgets/LayerList",
     "esri/widgets/BasemapGallery",
     "esri/widgets/Print",
+    "esri/portal/Portal",
+    "esri/identity/OAuthInfo",
+    "esri/identity/IdentityManager",
     "dojo/domReady!",
 ], function (
     declare,
@@ -32,7 +35,10 @@ define([
     Home,
     LayerList,
     BasemapGallery,
-    Print
+    Print,
+    Portal,
+    OAuthInfo,
+    esriId
 ) {
     return declare(null, {
         config: null,
@@ -54,6 +60,38 @@ define([
             this.getPortalId().then(() => {
                 this.init();
             });
+            const info = new OAuthInfo({
+                appId: "7md3uQI5oZ1ZRNIJ",
+                popup: false
+            });
+            esriId.registerOAuthInfos([info]);
+            esriId
+            .checkSignInStatus(info.portalUrl + "/sharing")
+            .then(() => {
+                handleSignedIn();
+            })
+            .catch(() => {
+                handleSignedOut();
+            });
+            document.getElementById("sign-in").addEventListener("click", function () {
+                esriId.getCredential(info.portalUrl + "/sharing");
+            });
+            document.getElementById("sign-out").addEventListener("click", function () {
+                esriId.destroyCredentials();
+                window.location.reload();
+            });
+        },
+
+        handleSignedIn: function() {
+            const portal = new Portal();
+            portal.load().then(() => {
+                const results = { name: portal.user.fullName, username: portal.user.username };
+                document.getElementById("results").innerText = JSON.stringify(results, null, 2);
+            });
+        },
+
+        handleSignedOut: function() {
+            document.getElementById("results").innerText = 'Signed Out'
         },
         
         paramsToJSON: function () {
