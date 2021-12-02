@@ -85,8 +85,8 @@ define([
         },
 
         handleSignedOut: function() {
-            esriId.destroyCredentials();
-            window.location.reload();
+            //esriId.destroyCredentials();
+            //window.location.reload();
             console.log("Signed Out");
         },
         
