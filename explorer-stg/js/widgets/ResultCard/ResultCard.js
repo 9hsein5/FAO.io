@@ -36,9 +36,8 @@ define([
             postCreate: function () {
                 const portal = new Portal();
                 portal.load().then(() => {
-                    const token_ = portal.credential.token;
                     if (this.result.thumbnail) {
-                        this.cardImage.src = `${this.config.portalUrl}/sharing/content/items/${this.result.id}/info/${this.result.thumbnail}?token=${token_}`;
+                        this.cardImage.src = `${this.config.portalUrl}/sharing/content/items/${this.result.id}/info/${this.result.thumbnail}?token=${portal.credential.token}`;
                     }
                 });
                 this.titleDiv.title = this.result.title;
