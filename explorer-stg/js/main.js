@@ -73,25 +73,19 @@ define([
             .catch(() => {
                 handleSignedOut();
             });
-            document.getElementById("sign-in").addEventListener("click", function () {
-                esriId.getCredential(info.portalUrl + "/sharing");
-            });
-            document.getElementById("sign-out").addEventListener("click", function () {
-                esriId.destroyCredentials();
-                window.location.reload();
-            });
+            esriId.getCredential(info.portalUrl + "/sharing");
         },
 
         handleSignedIn: function() {
             const portal = new Portal();
             portal.load().then(() => {
                 const results = { name: portal.user.fullName, username: portal.user.username };
-                document.getElementById("results").innerText = JSON.stringify(results, null, 2);
+                console.log(JSON.stringify(results, null, 2));
             });
         },
 
         handleSignedOut: function() {
-            document.getElementById("results").innerText = 'Signed Out'
+            console.log('Signed Out')
         },
         
         paramsToJSON: function () {
