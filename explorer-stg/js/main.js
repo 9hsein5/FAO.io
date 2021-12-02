@@ -47,10 +47,7 @@ define([
         scrollToBottomSignal: null,
 
         constructor: function (config) {
-            this.config = {
-                ...config,
-                ...this.paramsToJSON(),
-            };
+            this.config = config;
         },
 
         startup: function () {
@@ -79,7 +76,7 @@ define([
         handleSignedIn: function() {
             const portal = new Portal();
             portal.load().then(() => {
-                const results = { name: portal.user.fullName, username: portal.user.username };
+                const results = { name: portal.user.fullName, username: portal.user.username, token: portal.credential.token };
                 console.log("Signed In");
             });
         },
@@ -89,22 +86,12 @@ define([
             //window.location.reload();
             console.log("Signed Out");
         },
-        
-        paramsToJSON: function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const params = urlParams.entries();
-            const result = {};
-            for (const [key, value] of params) {
-                    result[key] = value;
-            }
-            return result;
-        },
 
         init: function () {
             this.filters = new Filters(
                 { config: this.config },
                 domConstruct.create("div", {}, query("#drawerContent")[0])
-            );
+            );            
             this.mapview = new MapView({
                 container: "mapview-container",
                 padding: {
@@ -267,6 +254,9 @@ define([
                 this.gallery.addResults(resultInfo);
                 this.updateBottomScroll();
             });
+            on(this.filters.categoryList, "selection-changed", () => {
+                //Selection Changed
+            });
             /*
             on(this.filterWidget, "select-result", function(event){
                 const selectedCountry = event.result.name;
@@ -374,11 +364,7 @@ define([
                     goToParams.target = webmap.initialViewProperties.viewpoint;
                     return view.goTo(goToParams.target, goToParams.options);
                 };
-                const selectedCountry = this.config.iso;
-                const where_clause = (/^[a-zA-Z]{3}$/.test(selectedCountry)) ? "adm0_iso3 = '" + selectedCountry + "'" : "1=1";
-                const featureFilter = {
-                    where: where_clause
-                };
+                const where_clause = this.filters.where;
                 this.mapview.map.layers.forEach((layer, index) => {
                     layer.definitionExpression = where_clause;
                     layer.queryExtent().then((response) => {
@@ -405,13 +391,13 @@ define([
                         window.history.replaceState(
                             { item: id },
                             "",
-                            `?item=${id}&iso=${this.config.iso}`
+                            `?item=${id}`
                         );
                     } else {
                         window.history.pushState(
                             { item: id },
                             "",
-                            `?item=${id}&iso=${this.config.iso}`
+                            `?item=${id}`
                         );
                     }
                 } catch (err) {
