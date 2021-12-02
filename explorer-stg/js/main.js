@@ -80,12 +80,14 @@ define([
             const portal = new Portal();
             portal.load().then(() => {
                 const results = { name: portal.user.fullName, username: portal.user.username };
-                console.log(JSON.stringify(results, null, 2));
+                console.log(results);
             });
         },
 
         handleSignedOut: function() {
-            console.log('Signed Out');
+            esriId.destroyCredentials();
+            window.location.reload();
+            console.log("Signed Out");
         },
         
         paramsToJSON: function () {
