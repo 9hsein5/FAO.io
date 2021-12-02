@@ -68,10 +68,10 @@ define([
             esriId
             .checkSignInStatus(info.portalUrl + "/sharing")
             .then(() => {
-                handleSignedIn();
+                this.handleSignedIn();
             })
             .catch(() => {
-                handleSignedOut();
+                this.handleSignedOut();
             });
             esriId.getCredential(info.portalUrl + "/sharing");
         },
