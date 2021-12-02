@@ -9,6 +9,7 @@ define([
     "dijit/_TemplatedMixin",
     "dijit/_WidgetsInTemplateMixin",
     "dojo/Evented",
+    "esri/portal/Portal",
     "dojo/NodeList-dom",
 ], function (
     declare,
@@ -20,7 +21,8 @@ define([
     _WidgetBase,
     _TemplatedMixin,
     _WidgetsInTemplateMixin,
-    Evented
+    Evented,
+    Portal
 ) {
     return declare(
         [_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, Evented],
@@ -32,9 +34,13 @@ define([
             },
 
             postCreate: function () {
-                if (this.result.thumbnail) {
-                    this.cardImage.src = `${this.config.portalUrl}/sharing/content/items/${this.result.id}/info/${this.result.thumbnail}`;
-                }
+                const portal = new Portal();
+                portal.load().then(() => {
+                    const token_ = portal.credential.token;
+                    if (this.result.thumbnail) {
+                        this.cardImage.src = `${this.config.portalUrl}/sharing/content/items/${this.result.id}/info/${this.result.thumbnail}?token=${token_}`;
+                    }
+                });
                 this.titleDiv.title = this.result.title;
                 this.titleLink.href = `${this.config.hublUrl}/maps/${this.result.id}/about`;
                 this.titleLink.innerText = this.result.title;
