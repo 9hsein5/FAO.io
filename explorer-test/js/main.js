@@ -18,7 +18,7 @@ define([
     "esri/portal/Portal",
     "esri/identity/OAuthInfo",
     "esri/identity/IdentityManager",
-    "@esri/arcgis-rest-auth",
+    "esri/arcgis-rest-auth",
     "dojo/domReady!",
 ], function (
     declare,
