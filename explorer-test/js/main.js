@@ -68,7 +68,7 @@ define([
         signIn: function() {
             var e, r = this.deferred = new t,
                 i = {
-                    client_id: this.appId,
+                    client_id: "7md3uQI5oZ1ZRNIJ",
                     response_type: "token",
                     expiration: this.expiration
                 };
