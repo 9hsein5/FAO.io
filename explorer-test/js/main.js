@@ -58,11 +58,7 @@ define([
             this.getPortalId().then(() => {
                 this.init();
             });
-            this.findOAuthInfo();
-        },
-        
-        findOAuthInfo: function () {
-            let oAuthInfo = esriId.findOAuthInfo(portalURL);
+            let oAuthInfo = esriId.findOAuthInfo(this.config.portalUrl);
             console.log(oAuthInfo.toJSON());
         },
 
