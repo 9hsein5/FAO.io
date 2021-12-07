@@ -38,8 +38,7 @@ define([
     Print,
     Portal,
     OAuthInfo,
-    esriId,
-    UserSession
+    esriId
 ) {
     return declare(null, {
         config: null,
@@ -58,7 +57,34 @@ define([
             this.getPortalId().then(() => {
                 this.init();
             });
-            console.log(`https://9hsein5.github.io/FAO.io/explorer-test/?arcgis-auth-origin=${encodeURIComponent(window.location.origin)}`);
+            const info = new OAuthInfo({
+                appId: "7md3uQI5oZ1ZRNIJ",
+                popup: false
+            });
+            esriId.registerOAuthInfos([info]);
+            esriId
+            .checkSignInStatus(info.portalUrl + "/sharing")
+            .then(() => {
+                this.handleSignedIn();
+            })
+            .catch(() => {
+                this.handleSignedOut();
+            });
+            esriId.getCredential(info.portalUrl + "/sharing");
+        },
+
+        handleSignedIn: function() {
+            const portal = new Portal();
+            portal.load().then(() => {
+                const results = { name: portal.user.fullName, username: portal.user.username, token: portal.credential.token };
+                console.log("Signed In");
+            });
+        },
+
+        handleSignedOut: function() {
+            //esriId.destroyCredentials();
+            //window.location.reload();
+            console.log("Signed Out");
         },
 
         init: function () {
