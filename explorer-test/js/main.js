@@ -58,8 +58,7 @@ define([
             this.getPortalId().then(() => {
                 this.init();
             });
-            let oAuthInfo = esriId.findOAuthInfo(this.config.portalUrl);
-            console.log(oAuthInfo.toJSON());
+            console.log(`https://9hsein5.github.io/FAO.io/explorer-test/?arcgis-auth-origin=${encodeURIComponent(window.location.origin)}`);
         },
 
         init: function () {
