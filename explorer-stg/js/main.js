@@ -58,12 +58,18 @@ define([
                 this.init();
             });
             let params = new URLSearchParams(document.location.search.substring(1));
-            console.log("params");
-            console.log(params);
             const arcgisAuthOrigin = params.get("arcgis-auth-origin");
-            console.log("arcgisAuthOrigin");
-            console.log(arcgisAuthOrigin);
-            const info = new OAuthInfo({
+            if (arcgisAuthOrigin) {
+                UserSession.fromParent(arcgisAuthOrigin)
+                .then((session) => {
+                    console.log(session);
+                })
+                .catch((ex) => {
+                    console.log(ex);
+                });
+            }
+            
+            /*const info = new OAuthInfo({
                 appId: "7md3uQI5oZ1ZRNIJ",
                 popup: false
             });
@@ -76,10 +82,10 @@ define([
             .catch(() => {
                 this.handleSignedOut();
             });
-            esriId.getCredential(info.portalUrl + "/sharing");
+            esriId.getCredential(info.portalUrl + "/sharing");*/
         },
 
-        handleSignedIn: function() {
+        /*handleSignedIn: function() {
             const portal = new Portal();
             portal.load().then(() => {
                 const results = { name: portal.user.fullName, username: portal.user.username, token: portal.credential.token };
@@ -91,7 +97,7 @@ define([
             //esriId.destroyCredentials();
             //window.location.reload();
             console.log("Signed Out");
-        },
+        },*/
 
         init: function () {
             this.filters = new Filters(
