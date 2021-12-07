@@ -58,8 +58,10 @@ define([
                 this.init();
             });
             let params = new URLSearchParams(document.location.search.substring(1));
+            console.log("params");
             console.log(params);
             const arcgisAuthOrigin = params.get("arcgis-auth-origin");
+            console.log("arcgisAuthOrigin");
             console.log(arcgisAuthOrigin);
             const info = new OAuthInfo({
                 appId: "7md3uQI5oZ1ZRNIJ",
