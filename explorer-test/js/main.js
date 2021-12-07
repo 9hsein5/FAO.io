@@ -18,7 +18,6 @@ define([
     "esri/portal/Portal",
     "esri/identity/OAuthInfo",
     "esri/identity/IdentityManager",
-    "esri/arcgis-rest-auth",
     "dojo/domReady!",
 ], function (
     declare,
@@ -59,22 +58,12 @@ define([
             this.getPortalId().then(() => {
                 this.init();
             });
-            console.info(`Embed: Session does not exist. Requesting from parent... `);
-            let params = new URLSearchParams(document.location.search.substring(1));
-            const arcgisAuthOrigin = params.get('arcgis-auth-origin'); 
-            if (arcgisAuthOrigin) {
-                UserSession.fromParent(arcgisAuthOrigin)
-                .then((session) => {
-                    console.info(`Embed: Got session from parent... `);
-                    setSession(session);
-                })
-                .catch((ex) => {
-                    console.log(`Embed: Exception: ${ex}`);
-                })
-            }
-            else {
-                console.log(`Embed: Session exists`);
-            }
+            this.findOAuthInfo();
+        },
+        
+        findOAuthInfo: function () {
+            let oAuthInfo = esriId.findOAuthInfo(portalURL);
+            console.log(oAuthInfo.toJSON());
         },
 
         init: function () {
