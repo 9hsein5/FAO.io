@@ -44,7 +44,7 @@ a:active {
           <div>
           <div>
           <div>
-          <p><span style="font-size:25px"><a id="m_encodeFilter" href="" style="font-size:25px;" target="_blank">Survey data</a> &nbsp;<a id="a_encodeFilter" href="" style="font-size:25px;" target="_blank">Aggregated data</a> &nbsp;<a id="r_encodeFilter" href="" style="font-size:25px;" target="_blank">Monitoring brief</a></span></p>
+          <p><span style="font-size:25px"><a id="m_encodeFilter" href="" style="font-size:25px;" target="_blank">Survey data</a> &nbsp;<a id="a_encodeFilter" href="" style="font-size:25px;" target="_blank">Aggregated data</a> &nbsp;<a id="r_encodeFilter" href="" style="font-size:25px;" target="_blank">Monitoring brief</a> &nbsp;<a id="p_encodeFilter" href="" style="font-size:25px;" target="_blank">Findings presentation</a></span></p>
           </div>
           </div>
           </div>
@@ -70,13 +70,16 @@ a:active {
     var filter_enc = encodeURIComponent(window.btoa(filter));
     var m_item_id = urlParams.get('m_item_id');
     var a_item_id = urlParams.get('a_item_id');
-    var r_item_id = urlParams.get('r_item_id');  
+    var r_item_id = urlParams.get('r_item_id');
+    var p_item_id = urlParams.get('p_item_id');
     var m_url = `https://data-in-emergencies.fao.org/datasets/${m_item_id}/explore?filters=${filter_enc}`;
     document.getElementById("m_encodeFilter").href = m_url;
     var a_url = `https://data-in-emergencies.fao.org/datasets/${a_item_id}/explore?filters=${filter_enc}`;
     document.getElementById("a_encodeFilter").href = a_url;
     var r_url = `https://data-in-emergencies.fao.org/datasets/${r_item_id}/explore`;
     document.getElementById("r_encodeFilter").href = r_url;
+    var p_url = `https://data-in-emergencies.fao.org/datasets/${p_item_id}/explore`;
+    document.getElementById("p_encodeFilter").href = p_url;
     if(m_item_id == null ||  m_item_id == "") {
       document.getElementById("m_encodeFilter").remove();
     }
@@ -85,6 +88,9 @@ a:active {
     }
     if(r_item_id == null ||  r_item_id == "") {
       document.getElementById("r_encodeFilter").remove();
+    }
+    if(p_item_id == null ||  p_item_id == "") {
+      document.getElementById("p_encodeFilter").remove();
     }
     </script>
   </body>
