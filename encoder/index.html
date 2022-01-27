@@ -35,7 +35,7 @@ a:active {
           <div>
           <div>
           <div>
-          <div style="color:#4c4c4c"><strong>Go to the source & outcome</strong></div>
+          <div style="color:#4c4c4c"><strong>Download the data</strong></div>
           <div>
           <div style="border:0px solid var(--light-300)">
           <div>
@@ -44,7 +44,45 @@ a:active {
           <div>
           <div>
           <div>
-          <p><span style="font-size:25px"><a id="m_encodeFilter" href="" style="font-size:25px;" target="_blank">Survey data</a> &nbsp;<a id="a_encodeFilter" href="" style="font-size:25px;" target="_blank">Aggregated data</a> &nbsp;<a id="r_encodeFilter" href="" style="font-size:25px;" target="_blank">Monitoring brief</a> &nbsp;<a id="p_encodeFilter" href="" style="font-size:25px;" target="_blank">Findings presentation</a></span></p>
+          <p><span style="font-size:25px"><a id="m_encodeFilter" href="" style="font-size:25px;" target="_blank">Survey data</a> &nbsp;<a id="a_encodeFilter" href="" style="font-size:25px;" target="_blank">Aggregated data</a></span></p>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table border="0" cellpadding="1" cellspacing="1" style="background-color:#ffffff; width:800px">
+      <tbody>
+        <tr>
+          <td>&nbsp;
+          <div>
+          <div style="padding:10px">
+          <div>
+          <div>
+          <div>
+          <div>
+          <div style="color:#4c4c4c"><strong>Related documents</strong></div>
+          <div>
+          <div style="border:0px solid var(--light-300)">
+          <div>
+          <div>
+          <div>
+          <div>
+          <div>
+          <div>
+          <p><span style="font-size:25px"><a id="r_encodeFilter" href="" style="font-size:25px;" target="_blank">DIEM brief</a> &nbsp;<a id="p_encodeFilter" href="" style="font-size:25px;" target="_blank">Key findings presentation</a> &nbsp;<a id="q_encodeFilter" href="" style="font-size:25px;" target="_blank">Questionnaire</a> &nbsp;<a id="s_encodeFilter" href="" style="font-size:25px;" target="_blank">Survey report</a></span></p>
           </div>
           </div>
           </div>
@@ -72,6 +110,8 @@ a:active {
     var a_item_id = urlParams.get('a_item_id');
     var r_item_id = urlParams.get('r_item_id');
     var p_item_id = urlParams.get('p_item_id');
+    var q_item_id = urlParams.get('q_item_id');
+    var s_item_id = urlParams.get('s_item_id');
     var m_url = `https://data-in-emergencies.fao.org/datasets/${m_item_id}/explore?filters=${filter_enc}`;
     document.getElementById("m_encodeFilter").href = m_url;
     var a_url = `https://data-in-emergencies.fao.org/datasets/${a_item_id}/explore?filters=${filter_enc}`;
@@ -80,6 +120,10 @@ a:active {
     document.getElementById("r_encodeFilter").href = r_url;
     var p_url = `https://data-in-emergencies.fao.org/datasets/${p_item_id}/explore`;
     document.getElementById("p_encodeFilter").href = p_url;
+    var q_url = `https://data-in-emergencies.fao.org/datasets/${q_item_id}/explore`;
+    document.getElementById("q_encodeFilter").href = q_url;
+    var s_url = `https://data-in-emergencies.fao.org/datasets/${s_item_id}/explore`;
+    document.getElementById("s_encodeFilter").href = s_url;
     if(m_item_id == null ||  m_item_id == "") {
       document.getElementById("m_encodeFilter").remove();
     }
@@ -91,6 +135,12 @@ a:active {
     }
     if(p_item_id == null ||  p_item_id == "") {
       document.getElementById("p_encodeFilter").remove();
+    }
+    if(q_item_id == null ||  q_item_id == "") {
+      document.getElementById("q_encodeFilter").remove();
+    }
+    if(s_item_id == null ||  s_item_id == "") {
+      document.getElementById("s_encodeFilter").remove();
     }
     </script>
   </body>
