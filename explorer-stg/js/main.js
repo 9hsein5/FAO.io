@@ -18,6 +18,7 @@ define([
     "esri/portal/Portal",
     "esri/identity/OAuthInfo",
     "esri/identity/IdentityManager",
+    "esri/core/watchUtils",
     "dojo/domReady!",
 ], function (
     declare,
@@ -38,7 +39,8 @@ define([
     Print,
     Portal,
     OAuthInfo,
-    esriId
+    esriId,
+    watchUtils
 ) {
     return declare(null, {
         config: null,
@@ -183,6 +185,16 @@ define([
                 { config: this.config },
                 domConstruct.create("div", {}, query("#drawerContent")[0])
             );
+            watchUtils.whenTrue(this.mapview, "stationary", () => {                
+                if (this.mapview.center) {
+                    const location = `?location=${this.mapview.center.latitude.toFixed(6)}%2C${this.mapview.center.longitude.toFixed(6)}%2C${this.mapview.zoom.toFixed(2)}`;
+                    query("#sharelink")[0].value = query("#sharelink")[0].value.replace(
+                        "{location}",
+                        location
+                    );
+                    query("#sharelink")[0].value = (query("#sharelink")[0].value).split('?')[0] + location;
+                }  
+            });
             this.handleEvents();
         },
 
