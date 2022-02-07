@@ -188,10 +188,6 @@ define([
             watchUtils.whenTrue(this.mapview, "stationary", () => {                
                 if (this.mapview.center) {
                     const location = `?location=${this.mapview.center.latitude.toFixed(6)}%2C${this.mapview.center.longitude.toFixed(6)}%2C${this.mapview.zoom.toFixed(2)}`;
-                    query("#sharelink")[0].value = query("#sharelink")[0].value.replace(
-                        "{location}",
-                        location
-                    );
                     query("#sharelink")[0].value = (query("#sharelink")[0].value).split('?')[0] + location;
                 }  
             });
@@ -394,6 +390,13 @@ define([
                     })
                     .catch(console.error);*/
                 });
+                if (this.mapview.center) {
+                    const location = `?location=${this.mapview.center.latitude.toFixed(6)}%2C${this.mapview.center.longitude.toFixed(6)}%2C${this.mapview.zoom.toFixed(2)}`;
+                    query("#sharelink")[0].value = query("#sharelink")[0].value.replace(
+                        "{location}",
+                        location
+                    );
+                }
             });
 
             this.mapview.map = webmap;
