@@ -41,6 +41,7 @@ define([
             filterBadges: [],
             lastSearchResponse: null,
             results: [],
+            where: null,
 
             constructor: function (options) {
                 lang.mixin(this, options);
@@ -184,6 +185,38 @@ define([
                     });
                 }
                 this.search();
+                this.where = this.countriesFilter();
+            },
+
+            countriesFilter: function() {
+                const selection = this.categoryList.getSelection();
+                this.filters = selection;
+                if (this.filters.values.length === 0) {
+                    return "1=1";
+                }
+                else {
+                    const selectedCountries = [];
+                    let where_clause = '';
+                    this.filters.badges.forEach((cat, index) => {
+                        if (cat.value.startsWith("/Categories/Countries/")) {
+                            selectedCountries.push(cat.title)
+                        }
+                    });
+                    selectedCountries.forEach((cntry, index) => {
+                        if (index !== selectedCountries.length-1) {
+                            where_clause += "adm0_name = '" + cntry + "' OR ";
+                        }
+                        else {
+                            where_clause += "adm0_name = '" + cntry + "'";
+                        }
+                    });
+                    if (where_clause === '') {
+                        return "1=1";
+                    }
+                    else {
+                        return where_clause;
+                    }     
+                }
             },
 
             setCategories: function (categories) {

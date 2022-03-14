@@ -315,6 +315,24 @@ define([
                     goToParams.target = webmap.initialViewProperties.viewpoint;
                     return view.goTo(goToParams.target, goToParams.options);
                 };
+                const where_clause = this.filters.where;
+                this.mapview.map.layers.forEach((layer, index) => {
+                    layer.definitionExpression = where_clause;
+                    layer.queryExtent().then((response) => {
+                        this.mapview.goTo(response.extent).catch((error) => {
+                            console.error(error);
+                        });
+                    });
+                    /*
+                    this.mapview
+                    .whenLayerView(layer)
+                    .then((layerView) => {
+                        if (layer.type === "feature") {
+                            layerView.filter = featureFilter;
+                        }
+                    })
+                    .catch(console.error);*/
+                });
                 if (this.mapview.center) {
                     const location = `?location=${this.mapview.center.latitude.toFixed(6)}%2C${this.mapview.center.longitude.toFixed(6)}%2C${this.mapview.zoom.toFixed(2)}`;
                     query("#sharelink")[0].value = (query("#sharelink")[0].value).split('?')[0] + location;
