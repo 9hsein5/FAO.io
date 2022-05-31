@@ -129,7 +129,6 @@ define([
                         }
                     }
                 }),
-
             });
             this.mapview.ui.add(this.legendExpand, "bottom-left");
             this.basemapGalleryExpand = new Expand({
