@@ -264,8 +264,10 @@ define([
             },
 
             search: function () {
+                const countries_selected = [];
                 for (let index = 0; index < this.filters.values.length; index++) {
                     if (this.filters.values[index].includes('/Categories/Countries/')) {
+                        countries_selected.push(((this.filters.values[index]).substring((this.filters.values[index]).lastIndexOf('/') + 1)));
                         this.filters.values[index] = '/Categories/Countries';
                     }
                     if (this.filters.values[index].includes('/Categories/Latest Data/')) {
@@ -279,6 +281,10 @@ define([
                         q: `${
                             this.searchbarInput.value.length > 0
                                 ? "(" + this.searchbarInput.value + ") "
+                                : " "
+                        }${
+                            countries_selected.length > 0
+                                ? "(" + countries_selected.join(" || ") + ") "
                                 : " "
                         }(type:("Web Map") -type:"Web Mapping Application")${
                             this.config.isAGOL && false
