@@ -272,7 +272,7 @@ define([
                         this.filters.values[index] = '/Categories/Latest Data';
                     }
                 }
-                this.filters.values = (this.filters.values).filter((item, index) => (this.filters.values).indexOf(item) === index);;
+                this.filters.values = (this.filters.values).filter((item, index) => (this.filters.values).indexOf(item) === index);
                 esriRequest(`${this.config.portalUrl}/sharing/rest/content/groups/${this.config.groupId}/search`, {
                     query: {
                         f: "json",

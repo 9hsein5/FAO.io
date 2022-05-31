@@ -73,11 +73,13 @@
             </div>
         </div>
         <script type="text/javascript">
-            require(["application/main", "dojo/text!./config.json"], function (
+            require(["application/main", "dojo/text!./config.json", "dojo/text!./countries.json", "dojo/text!./latestdata.json"], function (
                 Main,
-                configText
+                configText,
+                contriesText,
+                latestDataText
             ) {
-                const app = new Main(JSON.parse(configText));
+                const app = new Main(JSON.parse(configText), JSON.parse(contriesText), JSON.parse(latestDataText));
                 app.startup();
             });
         </script>

@@ -264,6 +264,15 @@ define([
             },
 
             search: function () {
+                for (let index = 0; index < this.filters.values.length; index++) {
+                    if (this.filters.values[index].includes('/Categories/Countries/')) {
+                        this.filters.values[index] = '/Categories/Countries';
+                    }
+                    if (this.filters.values[index].includes('/Categories/Latest Data/')) {
+                        this.filters.values[index] = '/Categories/Latest Data';
+                    }
+                }
+                this.filters.values = (this.filters.values).filter((item, index) => (this.filters.values).indexOf(item) === index);
                 esriRequest(`${this.config.portalUrl}/sharing/rest/content/groups/${this.config.groupId}/search`, {
                     query: {
                         f: "json",
@@ -346,12 +355,22 @@ define([
                         },
                         responseType: "json",
                     }
-                ).then((response) => {
-                    this.setCategories(
-                        response.data.categorySchema[0].categories
-                    );
-                });
-            },
-        }
-    );
-});
+                    ).then((response) => {
+                        const json = response.data.categorySchema[0].categories;
+                        json.forEach((element, index) => {
+                            if ( element.title === "Countries") {
+                                json[index] = this.countriesList;
+                            }
+                            if ( element.title === "Latest Data") {
+                                json[index] = this.latestDataList;
+                            }
+                        });
+                        this.setCategories(
+                            json
+                        );
+                    });
+                },
+            }
+        );
+    });
+    

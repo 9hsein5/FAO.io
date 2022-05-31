@@ -1,0 +1,21 @@
+{
+    "title": "Latest Data",
+    "categories": [
+      {
+        "title": "is in the last 3 months",
+        "categories": []
+      },
+      {
+        "title": "is in the last 6 months",
+        "categories": []
+      },
+      {
+        "title": "is in the last 9 months",
+        "categories": []
+      },
+      {
+        "title": "is in the last 12 months",
+        "categories": []
+      }
+    ]
+  }
