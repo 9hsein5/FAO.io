@@ -1,0 +1,81 @@
+{
+    "title": "Countries",
+    "categories": [
+      {
+        "title": "Afghanistan",
+        "categories": []
+      },
+      {
+        "title": "Bangladesh",
+        "categories": []
+      },
+      {
+        "title": "Chad",
+        "categories": []
+      },
+      {
+        "title": "Iraq",
+        "categories": []
+      },
+      {
+        "title": "Lebanon",
+        "categories": []
+      },
+      {
+        "title": "Liberia",
+        "categories": []
+      },
+      {
+        "title": "Madagascar",
+        "categories": []
+      },
+      {
+        "title": "Mali",
+        "categories": []
+      },
+      {
+        "title": "Mozambique",
+        "categories": []
+      },
+      {
+        "title": "Myanmar",
+        "categories": []
+      },
+      {
+        "title": "Nigeria",
+        "categories": []
+      },
+      {
+        "title": "Niger",
+        "categories": []
+      },
+      {
+        "title": "Pakistan",
+        "categories": []
+      },
+      {
+        "title": "Philippines",
+        "categories": []
+      },
+      {
+        "title": "Somalia",
+        "categories": []
+      },
+      {
+        "title": "Togo",
+        "categories": []
+      },
+      {
+        "title": "Yemen",
+        "categories": []
+      },
+      {
+        "title": "Zimbabwe",
+        "categories": []
+      },
+      {
+        "title": "Sierra Leone",
+        "categories": []
+      }
+    ]
+  }

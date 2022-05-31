@@ -185,7 +185,7 @@ define([
                     });
                 }
                 this.search();
-                this.where = this.countriesFilter();
+                this.where = "(" + this.countriesFilter() + ") AND (" + this.timeFilter() + ")";
             },
 
             countriesFilter: function() {
@@ -219,6 +219,41 @@ define([
                 }
             },
 
+            timeFilter: function() {
+                const selection = this.categoryList.getSelection();
+                this.filters = selection;
+                if (this.filters.values.length === 0) {
+                    return "1=1";
+                }
+                else {
+                    const selectedTime = [];
+                    let where_clause = '';
+                    this.filters.badges.forEach((cat, index) => {
+                        if (cat.value.startsWith("/Categories/Latest Data/")) {
+                            selectedTime.push(cat.title)
+                        }
+                    });
+                    selectedTime.forEach((time, index) => {
+                        const d = new Date();
+                        const month = parseInt(time.replace(/[^0-9]/g,''), 10);
+                        d.setMonth(d.getMonth() - month);
+                        const time_filter = d.toISOString().substring(0, 10);
+                        if (index !== selectedTime.length-1) {
+                            where_clause += "";
+                        }
+                        else {
+                            where_clause += "coll_end_date >= DATE '" + time_filter + "'";
+                        }
+                    });
+                    if (where_clause === '') {
+                        return "1=1";
+                    }
+                    else {
+                        return where_clause;
+                    }     
+                }
+            },
+
             setCategories: function (categories) {
                 this.categoryList.setCategories(categories);
             },
@@ -229,6 +264,15 @@ define([
             },
 
             search: function () {
+                for (let index = 0; index < this.filters.values.length; index++) {
+                    if (this.filters.values[index].includes('/Categories/Countries/')) {
+                        this.filters.values[index] = '/Categories/Countries';
+                    }
+                    if (this.filters.values[index].includes('/Categories/Latest Data/')) {
+                        this.filters.values[index] = '/Categories/Latest Data';
+                    }
+                }
+                this.filters.values = (this.filters.values).filter((item, index) => (this.filters.values).indexOf(item) === index);;
                 esriRequest(`${this.config.portalUrl}/sharing/rest/content/groups/${this.config.groupId}/search`, {
                     query: {
                         f: "json",
@@ -312,8 +356,17 @@ define([
                         responseType: "json",
                     }
                 ).then((response) => {
+                    const json = response.data.categorySchema[0].categories;
+                    json.forEach((element, index) => {
+                        if ( element.title === "Countries") {
+                            json[index] = this.countriesList;
+                        }
+                        if ( element.title === "Latest Data") {
+                            json[index] = this.latestDataList;
+                        }
+                    });
                     this.setCategories(
-                        response.data.categorySchema[0].categories
+                        json
                     );
                 });
             },
