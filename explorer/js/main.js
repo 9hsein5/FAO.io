@@ -83,12 +83,15 @@ define([
                     view: this.mapview,
                     listItemCreatedFunction: function(event) {
                         const item = event.item;
-                        if (item.layer.type != "group") {
+                        if (item.layer.type !== "group") {
                           // don't show legend twice
                           item.panel = {
                             content: "legend",
                             open: true
                           };
+                        }
+                        else {
+                            item.layer.listMode = "hide";
                         }
                     }
                 }),
@@ -317,12 +320,21 @@ define([
                 };
                 const where_clause = this.filters.where;
                 this.mapview.map.layers.forEach((layer, index) => {
-                    layer.definitionExpression = where_clause;
-                    layer.queryExtent().then((response) => {
-                        this.mapview.goTo(response.extent).catch((error) => {
-                            console.error(error);
+                    if (layer.type != "group") {
+                        layer.definitionExpression = where_clause;
+                        layer.queryExtent().then((response) => {
+                            this.mapview.goTo(response.extent).catch((error) => {
+                                console.error(error);
+                            });
                         });
-                    });
+                    }
+                    else {
+                        layer.layers.forEach((sublayer, index)=> {
+                            if (where_clause !== null) {
+                                sublayer.definitionExpression = sublayer.definitionExpression + " AND " + where_clause;
+                            }
+                        });
+                    }
                     /*
                     this.mapview
                     .whenLayerView(layer)
