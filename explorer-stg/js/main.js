@@ -44,12 +44,16 @@ define([
 ) {
     return declare(null, {
         config: null,
+        countriesList: null,
+        latestDataList: null,
         filters: null,
         gallery: null,
         scrollToBottomSignal: null,
 
-        constructor: function (config) {
+        constructor: function (config, countriesList, latestDataList) {
             this.config = config;
+            this.countriesList = countriesList;
+            this.latestDataList = latestDataList;
         },
 
         startup: function () {
@@ -91,7 +95,7 @@ define([
 
         init: function () {
             this.filters = new Filters(
-                { config: this.config },
+                { config: this.config, countriesList: this.countriesList, latestDataList: this.latestDataList},
                 domConstruct.create("div", {}, query("#drawerContent")[0])
             );            
             this.mapview = new MapView({
