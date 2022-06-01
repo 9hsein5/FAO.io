@@ -280,8 +280,8 @@ define([
                         f: "json",
                         q: `${
                             this.searchbarInput.value.length > 0
-                                ? "(" + this.searchbarInput.value + ( countries_selected.length == 1 ? " || " + countries_selected.join(" || ") : "" ) + ") "
-                                : ( countries_selected.length == 1 ? "(" + countries_selected.join(" || ") + ") " : " " )
+                                ? "(" + this.searchbarInput.value + ") "
+                                : " "
                         }(type:("Web Map") -type:"Web Mapping Application")${
                             this.config.isAGOL && false
                                 ? " orgid:" + this.config.portalId
@@ -298,6 +298,10 @@ define([
                                 : "/Categories",
                         sortField: "modified",
                         sortOrder: "desc",
+                        tags:
+                            countries_selected.length > 0
+                                ? "(" + countries_selected.join(" OR ") + ") "
+                                : "",
                     },
                 }).then((response) => {
                     this.lastSearchResponse = response.data;
