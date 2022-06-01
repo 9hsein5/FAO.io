@@ -282,10 +282,6 @@ define([
                             this.searchbarInput.value.length > 0
                                 ? "(" + this.searchbarInput.value + ") "
                                 : ""
-                        }${
-                            countries_selected.length > 0
-                                ? "(" + countries_selected.join(" || ") + ") "
-                                : " "
                         }(type:("Web Map") -type:"Web Mapping Application")${
                             this.config.isAGOL && false
                                 ? " orgid:" + this.config.portalId
