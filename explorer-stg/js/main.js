@@ -382,7 +382,9 @@ define([
                 const where_clause = this.filters.where;
                 this.mapview.map.layers.forEach((layer, index) => {
                     if (layer.type != "group") {
-                        layer.definitionExpression = where_clause;
+                        if (where_clause !== null) {
+                            layer.definitionExpression = layer.definitionExpression + " AND " + where_clause;
+                        }
                         layer.queryExtent().then((response) => {
                             this.mapview.goTo(response.extent).catch((error) => {
                                 console.error(error);

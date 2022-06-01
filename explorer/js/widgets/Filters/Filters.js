@@ -298,9 +298,9 @@ define([
                                 : "/Categories",
                         sortField: "modified",
                         sortOrder: "desc",
-                        tags:
+                        filter:
                             countries_selected.length > 0
-                                ? "(" + countries_selected.join(" OR ") + ") "
+                                ? "(tags:(" + countries_selected.join(" OR ") + ")) "
                                 : "",
                     },
                 }).then((response) => {
