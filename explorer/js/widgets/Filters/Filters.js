@@ -348,6 +348,16 @@ define([
                 }
             },
 
+            sortByValue: function(jsObj) {
+                jsObj["categories"].sort((a, b) => {
+                    if (a.title < b.title) 
+                        return -1; 
+                    if (a.title > b.title) 
+                        return 1; 
+                    return 0;
+                });
+            },
+
             getPortalCategories: function () {
                 esriRequest(
                     `${this.config.portalUrl}/sharing/rest/community/groups/${this.config.groupId}/categorySchema`,
@@ -359,6 +369,13 @@ define([
                     }
                     ).then((response) => {
                         const json = response.data.categorySchema[0].categories;
+                        this.countriesList["categories"].sort((a, b) => {
+                            if (a.title < b.title) 
+                                    return -1; 
+                                if (a.title > b.title) 
+                                    return 1; 
+                                return 0;
+                            });
                         json.forEach((element, index) => {
                             if ( element.title === "Countries") {
                                 json[index] = this.countriesList;
