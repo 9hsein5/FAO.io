@@ -325,7 +325,7 @@ define([
                 const where_clause = this.filters.where;
                 this.mapview.map.layers.forEach((layer, index) => {
                     if (layer.type != "group") {
-                        layer.definitionExpression = (layer.definitionExpression.length !== null ? layer.definitionExpression + (where_clause.length !== null ? " AND " + where_clause : "") : (where_clause.length !== null ? where_clause : ""));
+                        layer.definitionExpression = (layer.definitionExpression !== null ? layer.definitionExpression + (where_clause !== null ? " AND " + where_clause : "") : (where_clause !== null ? where_clause : ""));
                         layer.queryExtent().then((response) => {
                             this.mapview.goTo(response.extent).catch((error) => {
                                 console.error(error);
@@ -334,7 +334,7 @@ define([
                     }
                     else {
                         layer.layers.forEach((sublayer, index)=> {
-                            sublayer.definitionExpression = (sublayer.definitionExpression.length!== null ? sublayer.definitionExpression + (where_clause.length !== null ? " AND " + where_clause : "") : (where_clause.length !== null ? where_clause : ""));
+                            sublayer.definitionExpression = (sublayer.definitionExpression !== null ? sublayer.definitionExpression + (where_clause !== null ? " AND " + where_clause : "") : (where_clause !== null ? where_clause : ""));
                         });
                     }
                     /*
