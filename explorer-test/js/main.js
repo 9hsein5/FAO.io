@@ -382,9 +382,7 @@ define([
                 const where_clause = this.filters.where;
                 this.mapview.map.layers.forEach((layer, index) => {
                     if (layer.type != "group") {
-                        if (where_clause !== null) {
-                            layer.definitionExpression = layer.definitionExpression + " AND " + where_clause;
-                        }
+                        layer.definitionExpression = (layer.definitionExpression.length > 0 ? layer.definitionExpression + (where_clause.length > 0 ? " AND " + where_clause : "") : (where_clause.length > 0 ? where_clause : ""));
                         layer.queryExtent().then((response) => {
                             this.mapview.goTo(response.extent).catch((error) => {
                                 console.error(error);
@@ -393,9 +391,7 @@ define([
                     }
                     else {
                         layer.layers.forEach((sublayer, index)=> {
-                            if (where_clause !== null) {
-                                sublayer.definitionExpression = sublayer.definitionExpression + " AND " + where_clause;
-                            }
+                            sublayer.definitionExpression = (sublayer.definitionExpression.length > 0 ? sublayer.definitionExpression + (where_clause.length > 0 ? " AND " + where_clause : "") : (where_clause.length > 0 ? where_clause : ""));
                         });
                     }
                     /*
