@@ -383,19 +383,27 @@ define([
                 this.mapview.map.layers.forEach((layer, index) => {
                     if (layer.type != "group") {
                         if (layer.type === "feature") {
-                            layer.definitionExpression = (layer.definitionExpression !== null ? layer.definitionExpression + (where_clause !== null ? " AND " + where_clause : "") : (where_clause !== null ? where_clause : ""));
-                        }
-                        layer.queryExtent().then((response) => {
-                            this.mapview.goTo(response.extent).catch((error) => {
-                                console.error(error);
+                            layer.when().then((response) => {
+                                if(['adm0_name','coll_end_date'].every(value => {return response.fields.some(field => field.name === value);})){
+                                    layer.definitionExpression = (layer.definitionExpression !== null ? layer.definitionExpression + (where_clause !== null ? " AND " + where_clause : "") : (where_clause !== null ? where_clause : ""));
+                                };
                             });
-                        });
+                            layer.queryExtent().then((response) => {
+                                this.mapview.goTo(response.extent).catch((error) => {
+                                    console.error(error);
+                                });
+                            });
+                        }; 
                     }
                     else {
                         layer.layers.forEach((sublayer, index)=> {
                             if (sublayer.type === "feature") {
-                                sublayer.definitionExpression = (sublayer.definitionExpression !== null ? sublayer.definitionExpression + (where_clause !== null ? " AND " + where_clause : "") : (where_clause !== null ? where_clause : ""));
-                            }
+                                sublayer.when().then((response) => {
+                                    if(['adm0_name','coll_end_date'].every(value => {return response.fields.some(field => field.name === value);})){
+                                        sublayer.definitionExpression = (sublayer.definitionExpression !== null ? sublayer.definitionExpression + (where_clause !== null ? " AND " + where_clause : "") : (where_clause !== null ? where_clause : ""));
+                                    };
+                                });
+                            };
                         });
                     }
                     /*
