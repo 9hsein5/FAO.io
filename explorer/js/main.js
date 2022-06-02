@@ -331,11 +331,6 @@ define([
                                     layer.definitionExpression = (layer.definitionExpression !== null ? layer.definitionExpression + (where_clause !== null ? " AND " + where_clause : "") : (where_clause !== null ? where_clause : ""));
                                 };
                             });
-                            layer.queryExtent().then((response) => {
-                                this.mapview.goTo(response.extent).catch((error) => {
-                                    console.error(error);
-                                });
-                            });
                         }; 
                     }
                     else {
@@ -349,6 +344,11 @@ define([
                             };
                         });
                     }
+                    layer.when(() => {return layer.queryExtent();}).then((response) => {
+                        this.mapview.goTo(response.extent).catch((error) => {
+                            console.error(error);
+                        });
+                    });
                     /*
                     this.mapview
                     .whenLayerView(layer)
