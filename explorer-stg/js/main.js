@@ -385,7 +385,7 @@ define([
                         if (layer.type === "feature") {
                             layer.when().then((response) => {
                                 if(['adm0_name','coll_end_date'].every(value => {return response.fields.some(field => field.name === value);})){
-                                    layer.definitionExpression = (layer.definitionExpression !== null ? layer.definitionExpression + (where_clause !== null ? " AND " + where_clause : "") : (where_clause !== null ? where_clause : ""));
+                                    layer.definitionExpression = (layer.definitionExpression !== null ? "(" + layer.definitionExpression + ")" + (where_clause !== null ? " AND " + where_clause : "") : (where_clause !== null ? where_clause : ""));
                                 };
                             });
                         }; 
@@ -395,7 +395,7 @@ define([
                             if (sublayer.type === "feature") {
                                 sublayer.when().then((response) => {
                                     if(['adm0_name','coll_end_date'].every(value => {return response.fields.some(field => field.name === value);})){
-                                        sublayer.definitionExpression = (sublayer.definitionExpression !== null ? sublayer.definitionExpression + (where_clause !== null ? " AND " + where_clause : "") : (where_clause !== null ? where_clause : ""));
+                                        sublayer.definitionExpression = (sublayer.definitionExpression !== null ? "(" + sublayer.definitionExpression + ")" + (where_clause !== null ? " AND " + where_clause : "") : (where_clause !== null ? where_clause : ""));
                                     };
                                 });
                             };
